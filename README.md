@@ -20,7 +20,7 @@
 一些参数的解释：
 
 | 参数名 | 解释 | 示例 |
-| :----: | :--  | :--  | 
+| ---- | --  | --  | 
 | VNC_WEB_INTERFACE_PORT | 通过网页访问GUI服务的端口 | 5800 |
 | VNC_PROTOCOL_PORT | VNC协议端口 | 5900 |
 | YOURS_USER_ID | 你的UID，可以通过`id -u username`获取，会影响下载的文件的owner | 1000 |
@@ -37,14 +37,32 @@
 
 ```shell
 docker pull stormyyd/baidunetdisk  # 拉取镜像，当然你也可以自己build
-docker run -p {VNC_WEB_INTERFACE_PORT}:5800 -p {VNC_PROTOCOL_PORT}:5900 -e USER_ID={YOURS_USER_ID} -e GROUP_ID={YOURS_GROUP_ID} -e TZ={TIMEZONE} -v {DOWNLOAD_DIR_HOST}:{DOWNLOAD_DIR_CONTAINER} -v {CONFIG_DIR}:/config --name {CONTAINER_NAME} -d stormyyd/baidunetdisk # 运行容器
+docker run \
+  -p {VNC_WEB_INTERFACE_PORT}:5800 \
+  -p {VNC_PROTOCOL_PORT}:5900 \
+  -e USER_ID={YOURS_USER_ID} \
+  -e GROUP_ID={YOURS_GROUP_ID} \
+  -e TZ={TIMEZONE} \
+  -v {DOWNLOAD_DIR_HOST}:{DOWNLOAD_DIR_CONTAINER} \
+  -v {CONFIG_DIR}:/config \
+  --name {CONTAINER_NAME} \
+  -d stormyyd/baidunetdisk # 运行容器
 ```
 
 ### 115
 
 ```shell
 docker pull stormyyd/115  # 拉取镜像，当然你也可以自己build
-docker run -p {VNC_WEB_INTERFACE_PORT}:5800 -p {VNC_PROTOCOL_PORT}:5900 -e USER_ID={YOURS_USER_ID} -e GROUP_ID={YOURS_GROUP_ID} -e TZ={TIMEZONE} -v {DOWNLOAD_DIR_HOST}:{DOWNLOAD_DIR_CONTAINER} -v {CONFIG_DIR}:/config --name {CONTAINER_NAME} -d stormyyd/115 # 运行容器
+docker run \
+  -p {VNC_WEB_INTERFACE_PORT}:5800 \
+  -p {VNC_PROTOCOL_PORT}:5900 \
+  -e USER_ID={YOURS_USER_ID} \
+  -e GROUP_ID={YOURS_GROUP_ID} \
+  -e TZ={TIMEZONE} \
+  -v {DOWNLOAD_DIR_HOST}:{DOWNLOAD_DIR_CONTAINER} \
+  -v {CONFIG_DIR}:/config \
+  --name {CONTAINER_NAME} \
+  -d stormyyd/115 # 运行容器
 ```
 
 ## 补充说明
@@ -58,4 +76,3 @@ docker run -p {VNC_WEB_INTERFACE_PORT}:5800 -p {VNC_PROTOCOL_PORT}:5900 -e USER_
 ### 115
 
 115除了下载速度非常非常慢以外，一切都还不错。看起来单个任务似乎被限到了3MB/s这样的速度，拉满5个任务跑起来速度就还勉强能看，并且下载完成后，还会花很长时间去合并文件区块和校验。总之用115就是别急。
-
