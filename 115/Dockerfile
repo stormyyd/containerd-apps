@@ -1,6 +1,6 @@
 FROM jlesage/baseimage-gui:debian-11-v3.5
 
-ARG APP_URL=https://down.115.com/client/115pc/lin/115pc_1.0.5.18.deb
+ARG APP_URL=https://down.115.com/client/115pc/lin/115pc_1.0.6.7.deb
 
 RUN \
     apt-get update && apt-get install -y curl ca-certificates fonts-wqy-zenhei && \
