@@ -10,7 +10,7 @@ RUN \
     rm -rf /var/lib/apt/lists/* && \
     locale-gen C.UTF-8
 
-ARG APP_URL=https://down.115.com/client/115pc/lin/115pc_1.0.6.7.deb
+ARG APP_URL=https://down.115.com/client/115pc/lin/115pc_1.0.7.7.deb
 RUN \
     curl -sS -L ${APP_URL} -o /tmp/115.deb && \
     dpkg -i /tmp/115.deb && \
