@@ -12,7 +12,7 @@ RUN \
     rm -rf /var/lib/apt/lists/* && \
     locale-gen C.UTF-8
 
-ARG APP_URL=https://issuepcdn.baidupcs.com/issue/netdisk/LinuxGuanjia/4.10.5/baidunetdisk_4.10.5_amd64.deb
+ARG APP_URL=https://issuepcdn.baidupcs.com/issue/netdisk/LinuxGuanjia/4.11.5/baidunetdisk_4.11.5_amd64.deb
 RUN \
     curl -sS -L ${APP_URL} -o /tmp/baidunetdisk.deb && \
     dpkg -i /tmp/baidunetdisk.deb && \
