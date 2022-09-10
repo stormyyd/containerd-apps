@@ -1,5 +1,7 @@
 FROM jlesage/baseimage-gui:debian-11-v3.5
 
+LABEL org.opencontainers.image.authors="storm-yyd@outlook.com"
+
 ENV LANG=C.UTF-8
 ENV APP_NAME="Baidu Netdisk"
 COPY startapp.sh /startapp.sh
