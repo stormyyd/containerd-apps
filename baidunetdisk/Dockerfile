@@ -9,8 +9,11 @@ RUN \
     apt-get install -y \
         curl ca-certificates fonts-wqy-zenhei locales \
         libgtk-3-0 libnotify4 libnss3 libxss1 libxtst6 xdg-utils libatspi2.0-0 libuuid1 libsecret-1-0 libgbm-dev libasound2 && \
-    rm -rf /var/lib/apt/lists/* && \
-    locale-gen C.UTF-8
+    rm -rf /var/lib/apt/lists/*
+
+RUN \
+    locale-gen C.UTF-8 && \
+    sed-patch 's/<application type="normal">/<application type="normal" title="百度网盘">/' /etc/xdg/openbox/rc.xml
 
 ARG APP_URL=https://issuepcdn.baidupcs.com/issue/netdisk/LinuxGuanjia/4.12.5/baidunetdisk_4.12.5_amd64.deb
 RUN \

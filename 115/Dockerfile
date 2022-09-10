@@ -7,8 +7,9 @@ COPY startapp.sh /startapp.sh
 RUN \
     apt-get update && \
     apt-get install -y curl ca-certificates fonts-wqy-zenhei locales && \
-    rm -rf /var/lib/apt/lists/* && \
-    locale-gen C.UTF-8
+    rm -rf /var/lib/apt/lists/*
+
+RUN locale-gen C.UTF-8
 
 ARG APP_URL=https://down.115.com/client/115pc/lin/115pc_2.0.0.19.deb
 RUN \
