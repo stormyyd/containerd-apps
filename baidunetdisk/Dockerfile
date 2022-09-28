@@ -17,7 +17,7 @@ RUN \
     locale-gen C.UTF-8 && \
     sed-patch 's/<application type="normal">/<application type="normal" title="百度网盘">/' /etc/xdg/openbox/rc.xml
 
-ARG APP_URL=https://issuepcdn.baidupcs.com/issue/netdisk/LinuxGuanjia/4.12.5/baidunetdisk_4.12.5_amd64.deb
+ARG APP_URL=https://issuepcdn.baidupcs.com/issue/netdisk/LinuxGuanjia/4.14.5/baidunetdisk_4.14.5_amd64.deb
 RUN \
     curl -sS -L ${APP_URL} -o /tmp/baidunetdisk.deb && \
     dpkg -i /tmp/baidunetdisk.deb && \
