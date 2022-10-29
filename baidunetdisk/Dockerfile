@@ -1,21 +1,21 @@
-FROM jlesage/baseimage-gui:debian-11-v3.5
+FROM jlesage/baseimage-gui:debian-11-v4
 
 LABEL org.opencontainers.image.authors="storm-yyd@outlook.com"
 
-ENV LANG=C.UTF-8
-ENV APP_NAME="Baidu Netdisk"
+RUN set-cont-env APP_NAME "Baidu Netdisk"
+RUN set-cont-env APP_VERSION "4.14.5"
+
 COPY startapp.sh /startapp.sh
+COPY main-window-selection.jwmrc /etc/jwm/main-window-selection.jwmrc
 
-RUN \
-    apt-get update && \
-    apt-get install -y \
-        curl ca-certificates fonts-wqy-zenhei locales \
-        libgtk-3-0 libnotify4 libnss3 libxss1 libxtst6 xdg-utils libatspi2.0-0 libuuid1 libsecret-1-0 libgbm-dev libasound2 && \
-    rm -rf /var/lib/apt/lists/*
+RUN add-pkg \
+    curl ca-certificates fonts-wqy-zenhei locales \
+    libgtk-3-0 libnotify4 libnss3 libxss1 libxtst6 xdg-utils libatspi2.0-0 libuuid1 libsecret-1-0 libgbm-dev \ 
+    libasound2 libx11-xcb1
 
-RUN \
-    locale-gen C.UTF-8 && \
-    sed-patch 's/<application type="normal">/<application type="normal" title="百度网盘">/' /etc/xdg/openbox/rc.xml
+RUN sed-patch 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    locale-gen
+ENV LANG=en_US.UTF-8
 
 ARG APP_URL=https://issuepcdn.baidupcs.com/issue/netdisk/LinuxGuanjia/4.14.5/baidunetdisk_4.14.5_amd64.deb
 RUN \
