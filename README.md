@@ -15,6 +15,17 @@
 
 搜索一番后发现，有人已经构建了在Docker中运行GUI程序，并且通过VNC协议对外提供访问接口的镜像（[jlesage/docker-baseimage-gui](https://github.com/jlesage/docker-baseimage-gui)），基于此就可以实现我要做的一切了。
 
+## 构建
+
+受国内特殊的网络环境条件影响，为了加速镜像构建，在`Dockerfile`加入了名为`APT_SOURCE`的参数，在构建时可通过加入`--build-arg APT_SOURCE=http://mirrors.example.com/debian`参数的方式对镜像构建时使用的APT源进行配置，例如：
+
+```bash
+docker buildx build \
+    -t stormyyd/115:2.0.5.5-2 \
+    --build-arg APT_SOURCE=http://mirror.sjtu.edu.cn/debian \
+    .
+```
+
 ## 使用
 
 一些参数的解释：
@@ -26,9 +37,9 @@
 | YOURS_USER_ID | 你的UID，可以通过`id -u username`获取，会影响下载的文件的owner | 1000 |
 | YOURS_GROUP_ID | 你的GID，可以通过`id -g username`获取，会影响下载的文件的owner | 1000 |
 | TIMEZONE | 时区设置 | Asia/Shanghai |
-| DOWNLOAD_DIR_HOST | 本机存放下载文件的文件夹 | /mnt/sda114514/Downloads |
+| DOWNLOAD_DIR_HOST | 本机存放下载文件的文件夹 | /mnt/data/Downloads |
 | DOWNLOAD_DIR_CONTAINER | 容器中下载文件存放的文件夹，用于与本机文件夹建立映射关系 | /mnt/Downloads |
-| CONFIG_DIR | 设置文件在本机的存放的文件夹 | /mnt/sdb1919810/config |
+| CONFIG_DIR | 设置文件在本机的存放的文件夹 | /mnt/data/config |
 | CONTAINER_NAME | 容器名，方便之后找 | baidunetdisk |
 
 容器跑起来以后，记得进App设置中，把下载路径修改到DOWNLOAD_DIR_CONTAINER，不然文件就会被下到Docker卷中去惹。
