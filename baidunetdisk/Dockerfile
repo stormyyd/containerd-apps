@@ -18,7 +18,7 @@ RUN sed-patch 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     locale-gen
 ENV LANG=en_US.UTF-8
 
-ARG APP_URL=https://issuepcdn.baidupcs.com/issue/netdisk/LinuxGuanjia/4.17.7/baidunetdisk_4.17.7_amd64.deb
+ARG APP_URL=https://pkg-ant.baidu.com/issue/netdisk/LinuxGuanjia/4.17.7/baidunetdisk_4.17.7_amd64.deb
 RUN \
     curl -sS -L ${APP_URL} -o /tmp/baidunetdisk.deb && \
     dpkg -i /tmp/baidunetdisk.deb && \
